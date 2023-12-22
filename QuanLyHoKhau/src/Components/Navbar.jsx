@@ -1,7 +1,58 @@
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 
- function NavBar() {
-    return (
+function Links({ currentPage }) {
+  currentPage = currentPage.split("/")[1];
+  return (
+    <>
+      <Link
+        to="thuPhi"
+        class={`bg-gray-${
+          currentPage === "thuPhi" ? "900" : "300"
+        } text-${currentPage === "thuPhi" ? "white" : "gray-300"} rounded-md px-3 py-2 text-sm font-medium`}
+        aria-current="page"
+      >
+        Thu Phí
+      </Link>
+      <Link
+        to="contribute"
+        class={` text-${currentPage === "contribute" ? "white" : "gray-300"} bg-gray-${
+          currentPage === "contribute" ? "900" : "300"
+        } hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium`}
+        aria-current="page"
+      >
+        Đóng góp
+      </Link>
+      <Link
+        to="/household"
+        class={`text-${currentPage === "household" || currentPage === "/" ? "white" : "gray-300"} bg-gray-${
+          currentPage === "household" ? "900" : "300"
+        } hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium`}
+      >
+        Hộ khẩu
+      </Link>
+      <Link
+        to="/people"
+        class={`text-${currentPage === "people" ? "white" : "gray-300"} bg-gray-${
+          currentPage === "people" ? "900" : "300"
+        } hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium`}
+      >
+        Nhân khẩu
+      </Link>
+    </>
+  );
+}
+
+function NavBar({ children }) {
+  const location = useLocation();
+  const [currentPage, setCurrentPage] = useState("thuPhi");
+
+  useEffect(() => {
+    setCurrentPage(location.pathname);
+  }, [location]);
+
+  return (
+    <div>
       <nav class="bg-gray-800">
         <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
           <div class="relative flex h-16 items-center justify-between">
@@ -14,7 +65,7 @@ import { Link } from "react-router-dom";
               >
                 <span class="absolute -inset-0.5"></span>
                 <span class="sr-only">Open main menu</span>
-  
+
                 <svg
                   class="block h-6 w-6"
                   fill="none"
@@ -29,7 +80,7 @@ import { Link } from "react-router-dom";
                     d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
                   />
                 </svg>
-  
+
                 <svg
                   class="hidden h-6 w-6"
                   fill="none"
@@ -56,31 +107,7 @@ import { Link } from "react-router-dom";
               </div>
               <div class="hidden sm:ml-6 sm:block">
                 <div class="flex space-x-4">
-                  <a
-                    href="#"
-                    class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium"
-                    aria-current="page"
-                  >
-                    Thu Phí
-                  </a>
-                  <a
-                    href="#"
-                    class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
-                  >
-                    Đóng góp
-                  </a>
-                  <Link
-                    to="/household"
-                    class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
-                  >
-                    Hộ khẩu
-                  </Link>
-                  <Link
-                    to="/people"
-                    class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
-                  >
-                    Nhân khẩu
-                  </Link>
+                  <Links currentPage={currentPage} />
                 </div>
               </div>
             </div>
@@ -106,7 +133,7 @@ import { Link } from "react-router-dom";
                   />
                 </svg>
               </button>
-  
+
               <div class="relative ml-3">
                 <div>
                   <button
@@ -124,7 +151,7 @@ import { Link } from "react-router-dom";
             </div>
           </div>
         </div>
-  
+
         <div class="sm:hidden" id="mobile-menu">
           <div class="space-y-1 px-2 pb-3 pt-2">
             <Link
@@ -155,7 +182,10 @@ import { Link } from "react-router-dom";
           </div>
         </div>
       </nav>
-    );
-  }
 
-  export default NavBar
+      {children}
+    </div>
+  );
+}
+
+export default NavBar;

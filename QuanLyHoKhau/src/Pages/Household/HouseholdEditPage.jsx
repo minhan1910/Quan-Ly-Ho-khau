@@ -43,12 +43,12 @@ function HouseholdEditPage() {
     <div class="container">
       <div class="form-container">
         <div class="title">
-          <h1 className="text-red-400 font-bold text-lg">Sưa Nhân Khẩu</h1>
+          <h1 className="text-red-400 font-bold text-lg">Sưa Chủ Hộ</h1>
         </div>
         <form class="form" onSubmit={handleSubmit}>
           <div class="form-group">
             <label for="" class="label">
-              Tên Nhân Khẩu
+              Tên Chủ Hộ
             </label>
             <input
               type="text"
