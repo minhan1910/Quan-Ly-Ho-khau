@@ -1,0 +1,109 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.inner-container {
+  display: flex;
+  flex-direction: row;
+
+}
+
+/* LEFT */
+.left {
+  display: flex;
+  width: 20%;
+  height: 100vh;
+  background: purple;    
+  flex-direction: column;    
+}
+
+.left li:first-child {
+  font-size: 20px;
+  font-weight: bold;
+  background: blue;
+}
+
+.left li:not(:last-child) {
+  border-bottom: 1px green solid;    
+  padding-top: 15px;
+}
+
+.left li:hover {
+  background: #000;
+}
+
+.left li a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  width: 100%;
+  height: 100px;
+  color: #fff;
+}
+
+/* RIGHT */
+.right {
+  display: flex;
+  flex-direction: column;
+  background:	#E8E8E8;
+  gap: 20px;
+}
+
+.right {
+  flex: 1 auto;
+}
+
+/* FEATURES */
+.right .features {
+  display: flex;    
+  justify-content: space-around;
+  height: 100px;
+  align-items: center;
+}
+
+.right .features li {
+  cursor: pointer;
+}
+
+.right .features a {
+  text-decoration: none;
+  color: purple;
+  font-size: 20px;    
+}
+
+/* FILTER */
+
+
+.filter {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0px 10px;
+}
+
+.input {
+  flex: 1 auto;
+  width: 300px;
+  padding: 10px;
+}
+
+.select {
+  width: 250px;
+  padding: 10px;
+}
+
+.button {
+  width: 200px;
+  padding: 10px;
+  color: purple;
+}
+
+.button-search {
+  background-color: #fff;
+  outline: none;    
+  border: 1px solid;
+  cursor: pointer;
+}
+
